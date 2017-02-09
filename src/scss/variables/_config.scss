@@ -1,0 +1,70 @@
+// =======================
+// Media Query Variables
+// =======================
+$break-small        : 700px;
+$break-medium       : 1000px;
+$break-large        : 1100px;
+$break-x-large      : 1400px;
+
+
+
+// =======================
+// Color Variables
+// =======================
+
+// Deseciptive Colors
+// -----------------------
+$white              : #ffffff;
+$black              : #4e4e44;
+$light-grey         : #f1f1f1;
+$middle-grey        : #767676;
+$pixie-green        : #c3d4a0;
+$norway             : #a5bb86;
+$laurel             : #7a9281;
+$heather-grey       : #91907c;
+$snow               : #f2f2eb;
+$salt               : #e7eeed;
+$lily-white         : #eff1f1;
+
+
+
+// Layout Colors
+// -----------------------
+$color-primary      : $middle-grey;
+$color-secondary    : $laurel;
+$color-background   : $snow;
+
+// Text Colors
+// -----------------------
+$color-text-light   : $heather-grey;
+$color-text         : $middle-grey;
+$color-text-dark    : $black;
+
+// Link Colors
+// -----------------------
+$color-text-link        : $laurel;
+$color-text-link-hover  : $black;
+
+// Background Colors
+// -----------------------
+$color-background-white     : $white;
+$color-background           :  $snow;
+$color-background-light-1   : $lily-white;
+$color-background-light-2   : $salt;
+
+// Button Color
+// -----------------------
+$color-button-1         : $pixie-green;
+$color-button-2         : $norway;
+
+
+
+// =======================
+// Font Variables
+// =======================
+$font-primary           : 'Tahoma', Arial, sans-serif;
+$base-font-size         : 14px;
+$base-line-height       : 1;
+
+
+

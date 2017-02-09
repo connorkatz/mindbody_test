@@ -1,0 +1,29 @@
+/* ------------------ Resets ------------------------------------------------------- */
+* {margin: 0; padding: 0; box-sizing: border-box;}
+
+html,body {height: 100%; }
+
+body {font-size: $base-font-size; font-family: $font-primary; line-height: 1; color: $color-text; background: $color-background; -webkit-text-size-adjust: 100%;}
+
+h1,h2,h3,h4,h5,h6 {font-weight: 400;}
+
+// Default Link Styles
+a { color: $color-text-link; text-decoration: none; }
+
+// Default List Styles
+ul, ol {list-style-type: none;}
+
+// Default img style
+img {border: none; max-width: 100%;}
+
+// Default focus style
+:focus {outline: none;}
+
+::selection {background: $color-primary;}
+
+select, input {
+        color: $color-text; font-family: $font-primary; font-size: 14px; background: #ffffff; border: none;
+}
+
+b, strong {font-weight: 700;}
+

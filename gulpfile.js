@@ -1,58 +1,70 @@
 'use strict';
 
+// =======================
 // gulp require
+// =======================
 var gulp = require('gulp'),
-    concat = require('gulp-concat'),
-    uglify = require('gulp-uglify'),
-    rename = require('gulp-rename'),
+    useref = require('gulp-useref'),
+    gulpif = require('gulp-if'),
+    uglifyJs = require('gulp-uglify'),
+    uglifyCSS = require('gulp-clean-css'),
     sass = require('gulp-sass'),
-    sourceMaps = require('gulp-sourcemaps'),
+    maps = require('gulp-sourcemaps'),
     del = require('del');
 
-// concat scripts
-gulp.task("concatScripts", function() {
-    return gulp.src(['src/js/jquery.js', 'src/js/app.js'])
-        .pipe(sourceMaps.init())
-        .pipe(concat("appBundled.js"))
-        .pipe(sourceMaps.write('./'))
-        .pipe(gulp.dest("src/js"));
-});
 
-// uglify scripts
-gulp.task("uglifyScripts", ['concatScripts'], function() {
-    return gulp.src('dist/appBundled.js')
-        .pipe(uglify())
-        .pipe(rename('appBundled.min.js'))
-        .pipe(gulp.dest("src/js"));
-});
-
-// compile sass and create source maps
+// =======================
+// compile sass
+// =======================
 gulp.task("compileSass", function() {
-    return gulp.src('src/app.scss')
-        .pipe(sourceMaps.init())
-        .pipe(sass())
-        .pipe(sourceMaps.write('./'))
+    return gulp.src('src/scss/app.scss')
+        .pipe(maps.init())
+        .pipe(sass.sync().on('error', sass.logError))
+        .pipe(maps.write('./'))
         .pipe(gulp.dest('src/css'));
 });
 
-// watch for changed files
+
+// =======================
+// watch sass
+// =======================
 gulp.task("watch", function() {
-   gulp.watch('src/scss/**/*.scss', ['compileSass']);
-    gulp.watch('src/js/app.js', ['concatScripts']);
+    gulp.watch('src/scss/**/*.scss', ['compileSass']);
 });
 
-// clean old files
-gulp.task('clean', function() {
-    del(['dist', 'src/css/app.css*', 'src/js/appBundled*.js*']);
+
+// =======================
+// combine, minify sass & js for /dist
+// =======================
+gulp.task("useref", ['compileSass'], function() {
+    return gulp.src(['src/*.html'])
+        .pipe(useref())
+        .pipe(gulpif('*.js', uglifyJs()))
+        .pipe(gulpif('*.css', uglifyCSS()))
+        .pipe(gulp.dest('dist'));
 });
 
-// gulp build
-gulp.task("build" ['uglifyScripts', 'compileSass'], function() {
-    return gulp.src(['src/css/app.css', 'src/js/appBundled/js', 'index.html', 'src/img/**'], {base: './'})
-        .pipe('dist');
+
+// =======================
+// clean compiled sass & /dist
+// =======================
+gulp.task("clean", function() {
+    del(['dist', 'src/css']);
 });
 
-// gulp default
+
+// =======================
+// build /dist
+// =======================
+gulp.task("build", ['useref'], function() {
+    return gulp.src(['src/img/**', 'src/fonts/**'], {base: './'})
+        .pipe(gulp.dest('dist'));
+});
+
+
+// =======================
+// default - clean & build
+// =======================
 gulp.task("default", ['clean'], function() {
     gulp.start('build');
 });

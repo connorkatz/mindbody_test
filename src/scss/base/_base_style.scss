@@ -1,0 +1,129 @@
+// =======================
+// Global
+// =======================
+#main_content { padding: 20px; }
+
+.layout_block { @extend %layout_block }
+
+// =======================
+// Header
+// =======================
+#header { @extend %layout_container; position: relative; padding: 5px 20px; background: $color-background-light-2; font-size: 0; box-shadow: 0 1px 0 rgba(0,0,0,0.1);}
+
+#logo { @extend %layout_block; max-width: 200px;}
+
+#mobile_nav_show {
+    @extend %layout_block; position: absolute; top: 30px; right: 20px; width: 30px; height: 30px;
+    span, span:before, span:after {display: block; width: 30px; height: 3px; background: rgba(0,0,0,0.5);}
+    span:before {content: ''; @include prefix-auto(transform, translateY(-6px));}
+    span:after {content: ''; @include prefix-auto(transform, translateY(3px));}
+}
+
+// =======================
+// Main Nav
+// =======================
+#main_nav {position: fixed; z-index: 999; width: calc(100% - 25px); max-width: 350px; height: 100%; background: $color-background-white; top: 0; right: 0; box-shadow: -1px 0 1px rgba(0,0,0,0.2); display: none;}
+
+#mobile_nav_close {
+    display: block; height: 40px; padding: 20px 0 0 15px;
+    span {@include prefix-auto(transform, rotate(45deg));}
+    span, span:before {display: block; width: 15px; height: 2px; background: $color-text;}
+    span:before {content: ''; @include prefix-auto(transform, rotate(-90deg));}
+}
+
+.nav_lvl_1 {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    > li { border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+    > li > a { display: block; padding: 15px; font-size: 16px; @include prefix-auto(background, linear-gradient($color-background-white, $color-background-light-1)); }
+    > li.active {
+        > a { background: $color-background-white; color: $color-text-dark; }
+    }
+}
+
+.nav_lvl_2 {
+    display: none; background: $color-background-light-1;
+    &.active { display: block; }
+    li { background: $color-background-light-1; border-top: 1px solid rgba(0, 0, 0, 0.1); }
+    li.active a { color: $color-text-dark; background: rgba(255, 255, 255, 0.5); }
+    a { display: block; padding: 15px 25px; color: $color-text; }
+}
+
+// =======================
+// Dashboard - Business Overview
+// =======================
+#business_overview_container { @extend %layout_container; }
+
+// Add new program button
+// -----------------------
+#add_new_program {
+    margin-bottom: 20px;
+    a { @extend %layout_block; max-width: 200px; @include prefix-auto(background, linear-gradient($color-button-1, $color-button-2)); color: $white; border-radius: 5px; font-size: 0; border: 1px solid rgba(0, 0, 0, 0.2); text-align: center; box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255,255,255,0.5);; padding: 10px; }
+    i {
+        display: inline-block; vertical-align: middle; padding: 10px;
+        & span, & span:after { display: block; width: 20px; height: 5px; background: $color-background-white; }
+        & span:after { content: ''; @include prefix-auto(transform, rotate(90deg)); }
+    }
+    a > span { display: inline-block; vertical-align: middle; font-size: 16px; }
+}
+
+// Program items
+// -----------------------
+#program_items_block { padding-bottom: 30px; }
+
+.program_item_panel {
+    @extend %content_panel;
+}
+
+.feature_panel_header_group {
+    padding: 20px; position: relative;
+    h2 { font-size: 16px; font-weight: 700; color: $color-text-dark; margin-bottom: 15px; }
+    h3 { font-size: 11px; color: $color-text-light; }
+    a { position: absolute; top: 20px; right: 20px; display: block; width: 25px; height: 25px; background: $color-background-light-1; border: 1px solid rgba(0, 0, 0, 0.05); border-radius: 3px; }
+}
+
+.sales_details_overview {
+    @extend %layout_container;
+    background: $color-background; border-top: 1px solid rgba(0, 0, 0, 0.05); border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 10px 15px; font-size: 0;
+    .layout_column {
+        @extend %layout_block; width: calc(100% / 3);
+        span, strong { display: block; font-size: 10px; color: $color-text-light; line-height: 1.2; }
+        span.centered { text-align: center; }
+    }
+}
+
+.sales_details_itemized {
+    > a { display: block; padding: 15px; font-size: 11px; color: $color-text-light; }
+}
+
+.sales_details_itemized_inner {
+    padding: 15px 15px 0 15px;
+    ul { @extend %layout_container; }
+    li {
+        @extend %layout_block; width: calc(100% / 3); font-size: 11px; color: $color-text-light; line-height: 2;
+        &.centered { text-align: center; }
+        span { display: block; white-space: nowrap; color: $color-text-dark; overflow: hidden; text-overflow: ellipsis; }
+    }
+}
+
+// Program Summary Details
+// -----------------------
+#program_summary_details {
+    margin-bottom: 30px;
+    li {width: calc(100% / 3); max-width: 125px;}
+}
+
+#program_summary_header {
+    @extend %layout_container; color: $color-text-light; border-bottom: 1px solid rgba(0, 0, 0, 0.1); padding-bottom: 8px;
+    li { @extend %layout_block;font-size: 11px; vertical-align: bottom;}
+    li.large {font-size: 14px;}
+}
+
+.program_summary_item {
+    padding: 20px 0 0 0;
+    ul { @extend %layout_container; }
+    li {  @extend %layout_block; color: $color-text-dark;}
+    a {display: block; padding: 5px; @include prefix-auto(transform, translate(-5px)); color: $color-text-light; font-size: 11px;}
+    span {font-size: 9px;}
+}
+
+
