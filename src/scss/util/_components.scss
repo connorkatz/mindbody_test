@@ -1,0 +1,6 @@
+button {@extend %button;}
+
+.btn {
+    @extend %button;
+    &.transparent {@extend %button-transparent-darker;}
+}

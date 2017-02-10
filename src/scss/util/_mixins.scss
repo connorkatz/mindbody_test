@@ -1,0 +1,22 @@
+// Auto Prefix
+// -----------------------
+@mixin prefix-auto($cssProperty, $cssValue) {
+    -webkit-#{$cssProperty}: #{$cssValue};
+    -ms-#{$cssProperty}: #{$cssValue};
+    -moz-#{$cssProperty}: #{$cssValue};
+    -o-#{$cssProperty}: #{$cssValue};
+    #{$cssProperty}: #{$cssValue};
+}
+
+// Fonts
+// ------------------------
+@mixin font-face($family, $file_path) {
+    @font-face {
+        font-family: $family;
+        src: url('#{$path_font}#{$file_path}.eot');
+        src: url('#{$path_font}#{$file_path}.eot?#iefix') format('embedded-opentype'),
+        url('#{$path_font}#{$file_path}.woff2') format('woff2'),
+        url('#{$path_font}#{$file_path}.woff') format('woff'),
+        url('#{$path_font}#{$file_path}.ttf') format('truetype');
+    }
+}

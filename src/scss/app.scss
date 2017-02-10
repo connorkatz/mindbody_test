@@ -1,7 +1,6 @@
 // ---------------------------------
 // Global Imports
 // ---------------------------------
-@import "variables/index_variables";
-@import "mixins/index_mixin";
-@import "extend/index_extend";
+@import "util/index_util";
 @import "base/index_base.scss";
+@import "responsive/index_responsive";

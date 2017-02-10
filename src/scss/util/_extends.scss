@@ -1,0 +1,7 @@
+%layout_container {font-size: 0;}
+
+%layout_block {display: inline-block; vertical-align: top;  width: 100%; font-size: $base-font-size;}
+
+%button {background: $color-background-dark-1; color: $color-text-white; border: none; border-radius: 5px; display: block; padding: 10px; font-size: 14px; font-weight: 700; text-align: center;}
+
+%button-transparent-darker {@extend %button; background: rgba(0,0,0,0.1); font-weight: 400; color: $color-text;}

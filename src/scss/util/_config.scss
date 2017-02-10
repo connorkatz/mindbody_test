@@ -1,11 +1,17 @@
 // =======================
 // Media Query Variables
 // =======================
-$break-small        : 700px;
-$break-medium       : 1000px;
-$break-large        : 1100px;
-$break-x-large      : 1400px;
+$break-small        : '(min-width: 700px)';
+$break-medium       : '(min-width: 1000px)'1000px;
+$break-large        : '(min-width: 1100px)'1100px;
+$break-x-large      : '(min-width: 1400px)'1400px;
 
+
+// =======================
+// Base Paths
+// =======================
+$path-img           : '../img/';
+$path-font          : '../fonts/';
 
 
 // =======================
@@ -21,10 +27,12 @@ $middle-grey        : #767676;
 $pixie-green        : #c3d4a0;
 $norway             : #a5bb86;
 $laurel             : #7a9281;
+$amulet             : #879a6e;
 $heather-grey       : #91907c;
 $snow               : #f2f2eb;
 $salt               : #e7eeed;
 $lily-white         : #eff1f1;
+$medium-grey        : #a8a8a8;
 
 
 
@@ -36,9 +44,11 @@ $color-background   : $snow;
 
 // Text Colors
 // -----------------------
-$color-text-light   : $heather-grey;
-$color-text         : $middle-grey;
-$color-text-dark    : $black;
+$color-text-white       : $white;
+$color-text-light       : $heather-grey;
+$color-text             : $middle-grey;
+$color-text-dark        : $black;
+$color-text-placeholder : $medium-grey;
 
 // Link Colors
 // -----------------------
@@ -48,9 +58,12 @@ $color-text-link-hover  : $black;
 // Background Colors
 // -----------------------
 $color-background-white     : $white;
-$color-background           :  $snow;
+$color-background           : $snow;
 $color-background-light-1   : $lily-white;
 $color-background-light-2   : $salt;
+$color-background-light-3   : $light-grey;
+$color-background-light-4   : $light-grey;
+$color-background-dark-1    : $amulet;
 
 // Button Color
 // -----------------------
@@ -63,6 +76,7 @@ $color-button-2         : $norway;
 // Font Variables
 // =======================
 $font-primary           : 'Tahoma', Arial, sans-serif;
+$font-fontAwesome       : 'FontAwesome';
 $base-font-size         : 14px;
 $base-line-height       : 1;
 
