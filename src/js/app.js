@@ -1,15 +1,101 @@
 'use strict';
 
 // =======================
-// Get Data
+// Get data
 // =======================
-var programsData = $.getJSON('https://api.myjson.com/bins/5bdb3');
-var pricingData = $.getJSON('https://api.myjson.com/bins/47axv')
+function getData() {
+    var programsData;
+    var pricingData;
+    var activeItemsPricingData;
+    $.when(
+        $.getJSON('https://api.myjson.com/bins/5bdb3', function(data) {
+            programsData = data;
+        }),
+        $.getJSON('https://api.myjson.com/bins/47axv', function(data) {
+            pricingData = data;
+        }),
+        $.getJSON('https://api.myjson.com/bins/17oy7', function(data) {
+            activeItemsPricingData = data;
+        })
+    ).then(function() {
+        var rawData = {programs: programsData, pricing: pricingData, activeItemsPricing: activeItemsPricingData}
+        processRawData(rawData);
+    });
+}
 
 
+// ===============================
+// Process Data
+// ===============================
+function processRawData(rawData) {
+
+    // get numbuer of Visible Programs
+    var numUniqueActiveIDs = getUniqueIDCount(rawData.activeItemsPricing, 'ProgramID');
+    var i = 0;
+    $.each(rawData.programs, function() {
+        var programID = this.ProgramID;
+        var programItemPricing = [];
+
+        // get matching pricing objects
+        $.each(rawData.pricing, function() {
+            if(programID === this.ProgramID) {
+                programItemPricing.push(this);
+            }
+        });
+
+        // add matching pricing objects to {program}
+        this.ProgramPricingDetails = programItemPricing;
+
+        // add Visibility propery to {program
+        if(i < numUniqueActiveIDs) {
+            this.Visible = true;
+        }
+        else {
+            this.Visible = false;
+        }
+        i++;
+    });
+    delete rawData.pricing;
+    delete rawData.activeItemsPricing;
+    var appData = rawData;
+
+    console.log(appData);
+
+    renderTemplate(appData);
+}
+
+
+// ===============================
+// Render Template Blocks
+// ===============================
+function renderTemplate(appData) {
+    var template = Handlebars.compile($('#program_item_template').html());
+    Handlebars.registerHelper("formatCurrency", function(number) {
+        var numDollars = number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+        return '$' + numDollars;
+    });
+    var output = template(appData);
+    $('#program_items_container_block').html(output);
+}
+
+
+// ===============================
+// Data Utility Functions
+// ===============================
+function getUniqueIDCount(object, key) {
+    var uniqueIDs = [];
+    var itemID = 0;
+    $.each(object, function() {
+        itemID = this[key];
+        if($.inArray(itemID, uniqueIDs) == -1) {
+            uniqueIDs.push(itemID);
+        }
+    });
+    return uniqueIDs.length;
+}
 
 // =======================
-// Functions
+// UI Functions
 // =======================
 
 // add class active
@@ -34,8 +120,8 @@ function addPlaceholder(element) {
 
 // toggle sales details
 function toggleSalesDetails(element, trigger) {
-    var moreText = "more"
-    var lessText = "less"
+    var moreText = "more";
+    var lessText = "less";
     if(element.hasClass('active')) {
         deactivateBlock(element);
         trigger.text(moreText);
@@ -99,6 +185,9 @@ function setMultiselectLabel(multiselectItem, defaultText) {
 // ===============================
 $(document).ready(function() {
 
+    // Get Data and Render Template
+    getData();
+
     // Global .ready Variables
     var defaultMultiselectText = $('.form_multiselect').first().children('span').text();
 
@@ -109,7 +198,7 @@ $(document).ready(function() {
         return false;
     });
 
-    // hid main nav
+    // hide main nav
     $('#mobile_nav_close').click(function() {
         deactivateBlock($('#main_nav'));
         deactivateBlock($('#overlay'));
@@ -134,18 +223,10 @@ $(document).ready(function() {
     });
 
     // toggle sales details
-    $('.sales_details_more').click(function() {
+    $('#program_items_container_block').on('click', '.sales_details_more', function() {
         var $this = $(this);
         var salesDetails = $this.prev();
         toggleSalesDetails(salesDetails, $this);
-    });
-
-    // remove placeholder after selected option
-    $('#new_program_form select').change(function() {
-        var $this = $(this);
-        if($this.hasClass('placeholder')) {
-            removePlaceholder($this);
-        }
     });
 
     // show new program form
@@ -162,6 +243,14 @@ $(document).ready(function() {
         return false;
     });
 
+    // remove placeholder style on <select> after change
+    $('#new_program_form select').change(function() {
+        var $this = $(this);
+        if($this.hasClass('placeholder')) {
+            removePlaceholder($this);
+        }
+    });
+
     // toggle multiselect
     $('.form_multiselect > span').click(function() {
         var multiselectItem = $(this).parent();
@@ -174,6 +263,5 @@ $(document).ready(function() {
         setMultiselectLabel(mulitselectItem, defaultMultiselectText);
     });
 
-    console.log(programsData);
-    console.log(pricingData);
+
 }); // end document ready

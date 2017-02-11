@@ -1,13 +1,13 @@
 input[type="text"], input[type="password"], input[type="email"] {
     @include prefix-auto(appearance, none);
-    width: 100%; padding: 10px; font-size: 14px; color: $color-text; background: #ffffff; border: 2px solid rgba(0, 0, 0, 0.2); border-radius: 5px;
+    width: 100%; padding: 10px; font-size: 14px; color: $color-text; background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 5px;
 }
 
 input:focus { }
 
 select {
     @include prefix-auto(appearance, none);
-    width: 100%; font-size: 14px; padding: 10px; height: 41px; color: $color_text; display: block; border: 2px solid rgba(0, 0, 0, 0.2); border-radius: 5px; background: #ffffff url('#{$path-img}select_arrows.png') no-repeat right 50%; background-size: 30px 20px;
+    width: 100%; font-size: 14px; padding: 10px; height: 41px; color: $color_text; display: block; border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 5px; background: #ffffff url('#{$path-img}select_arrows.png') no-repeat right 50%; background-size: 30px 20px;
 }
 
 input[type="checkbox"] {
@@ -31,13 +31,13 @@ textarea {
 }
 
 .form_element {
-    padding: 0 0 10px 0;
+    padding: 0 0 12px 0;
     label { padding-bottom: 5px; font-size: 12px; font-weight: 700; display: block }
     select.placeholder { color: $color-text-placeholder; }
 }
 
 .form_multiselect {
-    width: 100%; font-size: 14px; color: $color_text; display: block; border: 2px solid rgba(0, 0, 0, 0.2); border-radius: 5px; background: $color-background-white; overflow: hidden;
+    width: 100%; font-size: 14px; color: $color_text; display: block; border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 5px; background: $color-background-white; overflow: hidden;
     span { display: block; padding: 12px 10px; background: url('#{$path-img}select_arrows.png') no-repeat right 50%; background-size: 30px 20px;}
     ul { display: none; padding: 10px;}
     li {
