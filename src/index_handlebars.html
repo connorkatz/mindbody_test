@@ -111,32 +111,14 @@
 
                 <section id="program_items_container_block">
 
-                    <!-- Program Items Dynamically Inserted Here -->
+                    <!-- Visible Program Items Dynamically Inserted Here -->
 
                 </section><!-- end program items container block -->
 
                 <section id="program_summary_details">
-                    <ul id="program_summary_header">
-                        <li class="large">All Programs</li>
-                        <li>Monthly Sales</li>
-                        <li>Monthly Attendance</li>
-                    </ul>
-                    <div class="program_summary_item">
-                        <ul>
-                            <li>Open Practice</li>
-                            <li>$572.00</li>
-                            <li>276 <span>Visits</span></li>
-                        </ul>
-                        <a href="#">more</a>
-                    </div><!-- end program summary item -->
-                    <div class="program_summary_item">
-                        <ul>
-                            <li>Yoga Videos</li>
-                            <li>$391.32</li>
-                            <li>82 <span>Views</span></li>
-                        </ul>
-                        <a href="#">more</a>
-                    </div><!-- end program summary item -->
+
+                    <!-- Hidden Program Items Dynamically Inserted Here -->
+
                 </section><!-- end program summary details -->
 
             </div><!-- end layout block 2 -->
@@ -228,7 +210,7 @@
                 </div><!-- end layout box -->
                 <div class="layout_column">
                     <span>Current</span>
-                    <strong>{{formatCurrency TotalMonthlySales}}</strong>
+                    <strong>{{formatCurrency TotalMonthlySales 0}}</strong>
                 </div><!-- end layout column -->
                 <div class="layout_column">
                     <span class="centered">1-Year</span>
@@ -259,6 +241,39 @@
 
 </script><!-- end handlebars template -->
 
+
+<script id="hidden_program_item_template" type="x-handlebars-template">
+
+    <ul id="program_summary_header">
+        <li class="large">All Programs</li>
+        <li>Monthly Sales</li>
+        <li>Monthly Attendance</li>
+    </ul>
+    {{#programs}}
+    {{#unless Visible}}
+    <div class="program_summary_item">
+        <ul>
+            <li>{{Name}}</li>
+            <li>{{formatCurrency TotalMonthlySales 1}}</li>
+            <li>{{MonthlyAttendance}}
+                <small>Visits</small>
+            </li>
+        </ul>
+        <div class="program_summary_details">
+            {{#ProgramPricingDetails}}
+            <ul>
+                <li><span>{{Name}}</span></li>
+                <li>{{formatCurrency Sales}}</li>
+                <li class="chart"></li>
+            </ul>
+            {{/ProgramPricingDetails}}
+        </div><!-- end program summary details -->
+        <a href="#" class="sales_details_more">more</a>
+    </div><!-- end program summary item -->
+    {{/unless}}
+    {{/programs}}
+
+</script>
 
 
 </body>

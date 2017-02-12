@@ -3,7 +3,7 @@
     // =======================
     // Global
     // =======================
-    #main_content { padding: 80px 20px 20px 20px; }
+    #main_content { padding: 80px 0 20px 0; }
 
     // =======================
     // Header
@@ -43,15 +43,15 @@
     // =======================
     // Dashboard - Business Overview
     // =======================
-    #business_overview_block_1 { width: 215px; padding: 0 65px 0 75px;}
+    #business_overview_block_1 { width: 125px; padding: 0;}
 
-    #business_overview_block_2 { width: calc(100% - 215px); }
+    #business_overview_block_2 { width: calc(100% - 125px); }
     // -----------------------
     // Add new program button
     // -----------------------
     #add_new_program {
         margin-bottom: 0;
-        a { max-width: none; background: none; color: $white; border-radius: 5px; font-size: 0; border: none; text-align: center; box-shadow: none; padding: 0;}
+        a { max-width: 80px; background: none; color: $white; border-radius: 5px; font-size: 0; border: none; text-align: center; box-shadow: none; padding: 0;}
         i {
             display: block; vertical-align: middle; @include prefix-auto(background, linear-gradient($color-button-1, $color-button-2)); color: $white; border-radius: 5px; font-size: 0; border: 1px solid rgba(0, 0, 0, 0.2); text-align: center; box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5); padding: 30px 10px;
             & span {display: inline-block;}

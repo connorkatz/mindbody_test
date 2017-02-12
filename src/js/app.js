@@ -46,7 +46,7 @@ function processRawData(rawData) {
         // add matching pricing objects to {program}
         this.ProgramPricingDetails = programItemPricing;
 
-        // add Visibility propery to {program
+        // add Visibility propery to {program}
         if(i < numUniqueActiveIDs) {
             this.Visible = true;
         }
@@ -59,23 +59,33 @@ function processRawData(rawData) {
     delete rawData.activeItemsPricing;
     var appData = rawData;
 
-    console.log(appData);
-
-    renderTemplate(appData);
+    renderTemplates(appData);
 }
 
 
 // ===============================
-// Render Template Blocks
+// Render Templates
 // ===============================
-function renderTemplate(appData) {
-    var template = Handlebars.compile($('#program_item_template').html());
-    Handlebars.registerHelper("formatCurrency", function(number) {
-        var numDollars = number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-        return '$' + numDollars;
+function renderTemplates(appData) {
+
+    // compile templates
+    var visibleItemsTemplate = Handlebars.compile($('#program_item_template').html());
+    var hiddenItemsTemplate = Handlebars.compile($('#hidden_program_item_template').html());
+
+    // helpers
+    Handlebars.registerHelper("formatCurrency", function(number, showDecimal) {
+        if (showDecimal === 1) {
+            number = number.toFixed(2);
+        }
+        number = number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+        return '$' + number;
     });
-    var output = template(appData);
-    $('#program_items_container_block').html(output);
+
+    // render templates
+    var renderVisible = visibleItemsTemplate(appData);
+    var renderHidden = hiddenItemsTemplate(appData);
+    $('#program_items_container_block').html(renderVisible);
+    $('#program_summary_details').html(renderHidden);
 }
 
 
@@ -223,7 +233,7 @@ $(document).ready(function() {
     });
 
     // toggle sales details
-    $('#program_items_container_block').on('click', '.sales_details_more', function() {
+    $('#program_items_container_block, #program_summary_details').on('click', '.sales_details_more', function() {
         var $this = $(this);
         var salesDetails = $this.prev();
         toggleSalesDetails(salesDetails, $this);
