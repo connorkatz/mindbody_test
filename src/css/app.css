@@ -277,7 +277,7 @@ textarea {
   z-index: 999;
   width: calc(100% - 25px);
   max-width: 350px;
-  min-height: 100%;
+  min-height: 200%;
   background: #ffffff;
   top: 0;
   right: -100%;
@@ -527,7 +527,7 @@ textarea {
   z-index: 999;
   width: calc(100% - 25px);
   max-width: 350px;
-  min-height: 100%;
+  min-height: 200%;
   background: #f6f6f6;
   top: 0;
   left: -100%;
@@ -537,7 +537,7 @@ textarea {
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
-  padding: 20px; }
+  padding: 20px 20px 100px 20px; }
   #new_program_form.active {
     left: 0; }
   #new_program_form h2 {
