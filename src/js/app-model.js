@@ -1,9 +1,9 @@
 'use strict';
 
 // =======================
-// Data -- get
+// Model -- Get Data
 // =======================
-function getData() {
+function appModel() {
     var programsData;
     var pricingData;
     var activeItemsPricingData;
@@ -20,7 +20,7 @@ function getData() {
     ).then(function() {
         var rawData = {programs: programsData, pricing: pricingData, activeItemsPricing: activeItemsPricingData}
 
-        processRawData(rawData);
+        appViewModel(rawData);
 
     });
 }

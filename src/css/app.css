@@ -23,11 +23,6 @@
   font-weight: 400;
   color: #767676; }
 
-@font-face {
-  font-family: "FontAwesome";
-  src: url("../fonts/font-awesome/fontawesome-webfont.eot");
-  src: url("../fonts/font-awesome/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/font-awesome/fontawesome-webfont.woff2") format("woff2"), url("../fonts/font-awesome/fontawesome-webfont.woff") format("woff"), url("../fonts/font-awesome/fontawesome-webfont.ttf") format("truetype"); }
-
 /* ------------------ Resets ------------------------------------------------------- */
 * {
   margin: 0;
@@ -128,10 +123,13 @@ input[type="checkbox"]:checked {
 
 input[type="checkbox"]:checked:after {
   position: absolute;
-  top: calc(50% - 7px);
+  top: calc(50% - 5px);
   left: calc(50% - 7px);
-  content: '\f00c';
-  font-family: "FontAwesome";
+  content: '';
+  background: url("../img/check.png") no-repeat;
+  background-size: contain;
+  width: 15px;
+  height: 15px;
   display: block;
   color: #ffffff; }
 
@@ -211,7 +209,7 @@ textarea {
 #site_container {
   position: relative;
   height: 100%;
-  overflow: hidden; }
+  overflow-x: hidden; }
 
 #main_content {
   padding: 20px 20px;

@@ -17,7 +17,7 @@ input[type="checkbox"] {
 
 input[type="checkbox"]:checked { background: $color-background-dark-1; border-color: $color-background-dark-1; }
 
-input[type="checkbox"]:checked:after { position: absolute; top: calc(50% - 7px); left: calc(50% - 7px); content: '\f00c'; font-family: $font-fontAwesome; display: block; color: $color-text-white; }
+input[type="checkbox"]:checked:after { position: absolute; top: calc(50% - 5px); left: calc(50% - 7px); content: ''; background: url('#{$path-img}check.png') no-repeat; background-size: contain; width: 15px; height: 15px; display: block; color: $color-text-white; }
 
 input[type="radio"] {
     @include prefix-auto(appearance, none);

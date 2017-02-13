@@ -1,9 +1,9 @@
 'use strict';
 
 // ===============================
-// View -- Render
+// View -- Render Templates
 // ===============================
-function renderTemplates(appData) {
+function renderView(appData) {
 
     // compile templates
     var visibleItemsTemplate = Handlebars.compile($('#program_item_template').html());
@@ -30,7 +30,7 @@ function renderTemplates(appData) {
 }
 
 // =======================
-// UI Functions
+// View -- Helpers
 // =======================
 
 // add class active
@@ -116,12 +116,12 @@ function setMultiselectLabel(multiselectItem, defaultText) {
 }
 
 // ===============================
-// Document Ready
+// App -- Run
 // ===============================
 $(document).ready(function() {
 
-    // Get Data and Render Template
-    getData();
+    // init app
+    appModel();
 
     // Global .ready Variables
     var defaultMultiselectText = $('.form_multiselect').first().children('span').text();
@@ -157,7 +157,7 @@ $(document).ready(function() {
         return false;
     });
 
-    // toggle sales details
+    // toggle visiblility of sales details
     $('#program_items_container_block, #program_summary_details').on('click', '.sales_details_more', function() {
         var $this = $(this);
         var salesDetails = $this.prev();

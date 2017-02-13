@@ -1,11 +1,11 @@
 'use strict';
 
 // ===============================
-// Data -- Processing
+// ViewModel -- Data Processing
 // ===============================
-function processRawData(rawData) {
+function appViewModel(rawData) {
 
-    // get numbuer of Visible Programs
+    // get number of Visible Programs
     var numUniqueActiveIDs = getUniqueIDCount(rawData.activeItemsPricing, 'ProgramID');
     var i = 0;
     $.each(rawData.programs, function() {
@@ -22,7 +22,7 @@ function processRawData(rawData) {
         // add matching pricing objects to {program}
         this.ProgramPricingDetails = programItemPricing;
 
-        // add Visibility propery to {program}
+        // add Visibility property to {program}
         if(i < numUniqueActiveIDs) {
             this.Visible = true;
         }
@@ -35,11 +35,11 @@ function processRawData(rawData) {
     delete rawData.activeItemsPricing;
     var appData = rawData;
 
-    renderTemplates(appData);
+    renderView(appData);
 }
 
 // ===============================
-// Data -- Helpers
+// ViewModel -- Helpers
 // ===============================
 function getUniqueIDCount(object, key) {
     var uniqueIDs = [];
