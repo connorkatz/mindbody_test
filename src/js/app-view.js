@@ -162,6 +162,7 @@ $(document).ready(function() {
         var $this = $(this);
         var salesDetails = $this.prev();
         toggleSalesDetails(salesDetails, $this);
+        return false;
     });
 
     // show new program form
