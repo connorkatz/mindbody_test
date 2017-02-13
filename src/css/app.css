@@ -689,6 +689,8 @@ textarea {
   .program_item_block {
     width: calc(100% / 3); }
   .feature_panel_header_group h2 {
-    margin-bottom: 25px; } }
+    margin-bottom: 25px; }
+  #new_program_form {
+    min-height: 100%; } }
 
 /*# sourceMappingURL=app.css.map */
