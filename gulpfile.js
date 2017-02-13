@@ -10,7 +10,8 @@ var gulp = require('gulp'),
     uglifyCSS = require('gulp-clean-css'),
     sass = require('gulp-sass'),
     maps = require('gulp-sourcemaps'),
-    del = require('del');
+    del = require('del'),
+    rename= require('gulp-rename');
 
 
 // =======================
@@ -53,11 +54,22 @@ gulp.task("clean", function() {
 });
 
 
-// =======================
-// build /dist
-// =======================
-gulp.task("build", ['useref'], function() {
-    return gulp.src(['src/img/**', 'src/fonts/**'], {base: './'})
+// ===============================
+// move img/
+// ===============================
+gulp.task("moveImg", function() {
+    return gulp.src('src/img/**')
+        .pipe(rename({dirname: 'img'}))
+        .pipe(gulp.dest('dist'));
+});
+
+
+// ===============================
+// move fonts/
+// ===============================
+gulp.task("moveFonts", function() {
+    return gulp.src('src/fonts/**')
+        .pipe(rename({dirname: 'fonts'}))
         .pipe(gulp.dest('dist'));
 });
 
@@ -65,6 +77,4 @@ gulp.task("build", ['useref'], function() {
 // =======================
 // default - clean & build
 // =======================
-gulp.task("default", ['clean'], function() {
-    gulp.start('build');
-});
+gulp.task("default", ['clean','useref', 'moveImg', 'moveFonts']);

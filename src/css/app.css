@@ -248,10 +248,12 @@ textarea {
 
 #mobile_nav_show {
   position: absolute;
-  top: 30px;
+  top: 15px;
   right: 20px;
+  display: block;
   width: 30px;
-  height: 30px; }
+  height: 30px;
+  padding-top: 15px; }
   #mobile_nav_show span, #mobile_nav_show span:before, #mobile_nav_show span:after {
     display: block;
     width: 30px;
@@ -395,7 +397,7 @@ textarea {
   border-radius: 5px; }
 
 .feature_panel_header_group {
-  padding: 20px;
+  padding: 20px 20px 10px 20px;
   position: relative; }
   .feature_panel_header_group h2 {
     font-size: 16px;
@@ -423,11 +425,14 @@ textarea {
     .feature_panel_header_group a:hover span {
       background-position: 0 0; }
 
+.sales_detail_graph {
+  padding: 0 20px 10px 20px; }
+
 .sales_details_overview {
-  background: #f2f2eb;
+  background: #fbfbf6;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  padding: 10px 15px;
+  padding: 10px 15px 2px 15px;
   font-size: 0; }
   .sales_details_overview .layout_column {
     width: 30%; }
@@ -444,12 +449,18 @@ textarea {
       font-size: 12px; }
     .sales_details_overview .layout_column span.centered {
       text-align: center; }
+    .sales_details_overview .layout_column .chart img {
+      display: inline-block; }
 
 .sales_details_itemized > a {
   display: block;
   padding: 15px;
   font-size: 11px;
   color: #a6a58f; }
+
+.sales_details_itemized .chart {
+  background: url("../img/spark_lines.png") no-repeat center top;
+  height: 20px; }
 
 .sales_details_itemized_inner {
   display: none;
